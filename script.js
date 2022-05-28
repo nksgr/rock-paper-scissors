@@ -1,13 +1,3 @@
-
-// part 1 - rock paper scissor - 
-
-//global variables
-
-moves = ['rock', 'paper', 'scissors']
-pScore = 0
-cScore = 0
-
-
 // list of functions: for part1 
 
 /*
@@ -32,6 +22,38 @@ supporting functions for game():
 
 
 
+// part 2 - rock paper scissor - 
+
+
+// DOM Access
+
+let pscore = document.querySelector('.pscore')
+let round = document.querySelector('.round')
+let cscore = document.querySelector('.cscore')
+let msg = document.querySelector('.msg')
+let cimage = document.querySelector('.cimage')
+let pimage = document.querySelector('.pimage')
+let cgame = document.querySelector('.cgame')
+let pgame = document.querySelector('.pgame')
+
+//buttons:
+
+// let rock = document.querySelector('.rock')
+// let paper = document.querySelector('.paper')
+// let scissor = document.querySelector('.scissor')
+// let reset = document.querySelector('.reset')
+//let start = document.querySelector('.start')
+
+
+//global variables
+
+// moves = ['rock', 'paper', 'scissors']
+
+
+
+
+
+
 
 
 // the main game function
@@ -39,23 +61,32 @@ const game = ()=>{
 
     pScore = 0;
     cScore = 0;
+
+    // #### replace for loop with while loop - pscore/cscore< 5 ####
     
 
     for (let i=1; i<6; i++){
 
         console.log ("Round:", i)
 
-        let pSelect = pSelection()
-        let cSelect = cSelection() 
+        let pSelect = pSelection() // ### event listner (returns - rock, paper, scissor) ###
+        let cSelect = cSelection()  // ### automated stuff (returns - rock, paper, scissor)) ###
 
-        console.log("Computer CHOSE: ", cSelect)
 
-        console.log(roundWinner( pSelect, cSelect))
+        // #### update DOM here - pimage (with what pSelect text) cimage with what cs chose ####
 
-        console.log(`Player: ${pScore} Computer: ${cScore} `)
+        
+        // ### call roundWinner here
+
+        //roundWinner( pSelect, cSelect)
+
+        // ### update scoreboard 
+      
+
+        //console.log(`Player: ${pScore} Computer: ${cScore} `)
 
     }
-    
+    // call game Winner here
     console.log(gameWinner(pScore, cScore))
     
 
@@ -70,16 +101,12 @@ const game = ()=>{
 // it prompts until user enters correct input
 const pSelection = ()=>{
 
-    // for part 1 - we're gonna assume that user inputs the correct words 
+    // #### make it as an event listenr for rock, paper, scissor
+
     let pSelect;
-    let msg = "Your turn: Rock, paper, scissors"
-    while(true){
-        pSelect = prompt(msg).toLowerCase()
-
-        if(moves.indexOf(pSelect) != -1)  break
-
-        else  msg = "Please enter the correct move: rock, paper, scissors"
-    }
+    let msg = "Your turn: Click on your choice" //#### update msg box in DOM
+   
+    // #### return the clicked event
 
     return pSelect
 }
