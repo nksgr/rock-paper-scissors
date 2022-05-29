@@ -36,18 +36,114 @@ let pimage = document.querySelector('.pimage')
 let cgame = document.querySelector('.cgame')
 let pgame = document.querySelector('.pgame')
 
+
+
+
+
 //buttons:
 
-// let rock = document.querySelector('.rock')
-// let paper = document.querySelector('.paper')
-// let scissor = document.querySelector('.scissor')
-// let reset = document.querySelector('.reset')
-//let start = document.querySelector('.start')
+let rock = document.querySelector('.rock')
+let paper = document.querySelector('.paper')
+let scissors = document.querySelector('.scissor')
+let resetbtn = document.querySelector('.reset')
+let start = document.querySelector('.start')
 
 
 //global variables
 
-// moves = ['rock', 'paper', 'scissors']
+movesEmojis= {
+    'rock': '✊',
+    'paper': '✋',
+    'scissors': '✌️'
+}
+moves = ['rock', 'paper', 'scissors']
+
+pScore = 0;
+cScore = 0;
+roundno = 0;
+pGame = 0;
+cGame = 0;
+
+
+
+// button's events
+
+rock.addEventListener('click', ()=>{
+
+    playRound('rock')
+})
+
+paper.addEventListener('click', ()=>{
+    playRound('paper')
+})
+
+scissors.addEventListener('click', ()=>{
+    playRound('scissors')
+})
+
+resetbtn.addEventListener('click', ()=>{
+    reset()
+})
+
+
+
+const playRound = (pSelect)=>{
+
+    round.textContent = roundno
+
+       
+    let cSelect = cSelection()  // ### automated stuff (returns - rock, paper, scissor)) ###
+
+    console.log(pSelect, cSelect)
+    // #### update DOM here - pimage (with what pSelect text) cimage with what cs chose ####
+    pimage.textContent = movesEmojis[pSelect]
+    cimage.textContent = movesEmojis[cSelect]
+    
+    // ### call roundWinner here
+
+    msg.textContent = roundWinner( pSelect, cSelect) 
+
+    // ### update scoreboard 
+
+    pscore.textContent = pScore
+    cscore.textContent = cScore
+  
+
+    //console.log(`Player: ${pScore} Computer: ${cScore} `)
+    roundno ++;
+
+    
+    if (pScore ==5 || cScore == 5){
+        msg.textContent = gameWinner(pScore, cScore)
+        pscore.textContent = 0
+        round.textContent = 0
+        cscore.textContent =0
+        cimage.textContent = ''
+        pimage.textContent = ''
+
+   
+   
+        
+        if(pScore>=5){
+            pGame++
+        } else if (cScore >=5){
+            cGame++
+        }
+
+        pScore = 0
+        cScore = 0
+        round = 0
+
+        pgame.textContent = pGame
+        cgame.textContent = cGame
+
+    }
+
+}
+
+
+
+
 
 
 
@@ -57,37 +153,18 @@ let pgame = document.querySelector('.pgame')
 
 
 // the main game function
-const game = ()=>{
+const reset = ()=>{
 
-    pScore = 0;
-    cScore = 0;
+    pscore.textContent = 0
+    round.textContent = 0
+    cscore.textContent =0
+    msg.textContent = "Select your choice below"
+    cimage.textContent = ''
+    pimage.textContent = ''
+    cgame.textContent = 0
+    pgame.textContent = 0
 
-    // #### replace for loop with while loop - pscore/cscore< 5 ####
     
-
-    for (let i=1; i<6; i++){
-
-        console.log ("Round:", i)
-
-        let pSelect = pSelection() // ### event listner (returns - rock, paper, scissor) ###
-        let cSelect = cSelection()  // ### automated stuff (returns - rock, paper, scissor)) ###
-
-
-        // #### update DOM here - pimage (with what pSelect text) cimage with what cs chose ####
-
-        
-        // ### call roundWinner here
-
-        //roundWinner( pSelect, cSelect)
-
-        // ### update scoreboard 
-      
-
-        //console.log(`Player: ${pScore} Computer: ${cScore} `)
-
-    }
-    // call game Winner here
-    console.log(gameWinner(pScore, cScore))
     
 
 
@@ -130,13 +207,13 @@ const roundWinner = (pSelect, cSelect)=> {
     switch(roundScore){
         case -1: 
             cScore++;
-            return (`${cSelect} beats ${pSelect}! You lost this round, booooo! `)
+            return (` You lost this round, booooo! ${cSelect} beats ${pSelect}!`)
             break 
 
         case 1: 
 
             pScore++;
-            return (`${pSelect} beats ${cSelect}! You won this round, yaaay! `)
+            return (` You won this round, yaaay! ${pSelect} beats ${cSelect}!`)
             break 
 
         case 0: 
