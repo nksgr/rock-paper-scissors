@@ -1,156 +1,193 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-*{
-    box-sizing: border-box;
-    color: #fff;
-    
+* {
+  box-sizing: border-box;
 }
 
-html{
-    font-size: 62.5%;
+html {
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  max-height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+  background-color: rgba(26, 87, 64, 0.979);
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
 }
 
-body{
-    position: relative;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 90%;
-    margin: 0 auto;
-    background-color:rgba(1, 1, 53, 0.979);
-    font-size: 2rem;
-    font-family: 'Poppins', sans-serif;
-}
-
-header, main, footer{
-    border: 2px solid black;
-    margin: 2rem auto;
-}
-
-header{
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    padding: 1rem;
-}
-
-
-.scoreboard, .play, .selection, footer{
-   
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-   
-    
-}
-
-.play, .selection{
-    padding: 2.5rem 2rem;
-    margin: 2rem 0;
-}
-
-.cscore-box, .pscore-box, .cimage, .pimage, .cscore, .pscore, .round, .rock, .paper, .scissor, .msg {
-
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-
-}
-
-
-
-.cscore, .pscore, .round{
-
-    border: 0.1rem solid white;
-    background-color: rgba(25, 5, 71, 0.808);
-    padding: 3rem;
-    width: 8rem;
-    height: 8rem;
-    font-size: 2.5rem;
-
-
-}
-
-.round{
-    background-color: rgb(65, 68, 2);
-}
-
-
-
-
-.cimage, .pimage {
-    width: 20rem;
-    height: 15rem;
-    border: 0.1rem solid white;
-    border-radius: 5%;
-    background-color: rgba(37, 57, 236, 0.836);
-    font-size: 8rem;
-}
-
-.msg{
-    width: 21rem;
-    height: 10rem;
-
-}
-
-.selection{
-    
-    border: 0.1rem solid white;
-    
-}
-
-.rock, .paper, .scissor {
-
-    border: 0.1rem solid white;
-    border-radius: 5%;
-    background-color: rgba(0, 0, 0, 0.822);
-    width: 13rem;
-    height: 10rem;
-    font-size: 7rem;
-
-
-}
-
-.rock:hover, .paper:hover, .scissor:hover, button:hover{
-    cursor: pointer;
-    background-color: rgba(56, 53, 53, 0.568);
-
-}
-
-footer{
-    justify-content: space-around;
-    padding: 1rem;
-    
-}
-.game , .highscore {
-    width: 50%;
-    text-align: center;
-}
-
-button{
-    background-color: rgba(48, 41, 150, 0.808);
-    padding: 1rem 2.5rem;
-    border-radius: 1rem;
-    font-size: 2rem;;
-}
-
-footer{
-    display: flex;
-}
-
-.high{
-    display: none;
+header,
+main,
+footer {
+  border: 1px solid rgba(206, 201, 201, 0.644);
+  margin: 2rem auto;
 }
 
 .startpage {
-    position: absolute;
-    height: 90vh;
-    width: 90vw;
-    background-color: rgb(18, 73, 175);
-    z-index: 1;
-    display: none;
+  display: flex;
+  gap: 1rem;
 }
 
+.rules {
+  width: 65%;
+}
+
+.btn-start {
+  text-align: center;
+  width: 20%;
+}
+
+.start {
+  padding: 1rem 2rem;
+  background-color: rgba(111, 144, 206, 0.87);
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.start:hover {
+  cursor: pointer;
+}
+.start:active {
+  transform: scale(97%);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00f87c7a;
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+header h2 {
+  text-align: center;
+  width: 25%;
+}
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+}
+
+.scoreboard > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  padding-bottom: 1.2rem;
+  font-size: 1.6rem;
+  background-color: #0522147a;
+}
+
+.msg {
+  text-align: center;
+  padding: 1rem;
+}
+
+.play,
+.selection,
+footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.play,
+.selection {
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.cimage,
+.pimage,
+.round,
+.rock,
+.paper,
+.scissor,
+.msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cimage,
+.pimage {
+  width: 20rem;
+  height: 15rem;
+  border: 0.1rem solid white;
+  border-radius: 5%;
+  background-color: rgba(37, 57, 236, 0.836);
+  font-size: 8rem;
+}
+
+.msg {
+  width: 21rem;
+  height: 10rem;
+}
+
+.selection {
+  border: 0.1rem solid white;
+}
+
+.rock,
+.paper,
+.scissor {
+  border: 0.1rem solid white;
+  border-radius: 5%;
+  background-color: rgba(0, 0, 0, 0.822);
+  width: 13rem;
+  height: 10rem;
+  font-size: 7rem;
+}
+
+.rock:hover,
+.paper:hover,
+.scissor:hover,
+button:hover {
+  cursor: pointer;
+  background-color: rgba(56, 53, 53, 0.568);
+}
+
+footer {
+  justify-content: space-around;
+  padding: 1rem;
+}
+.game,
+.highscore {
+  width: 50%;
+  text-align: center;
+}
+
+button {
+  background-color: rgba(48, 41, 150, 0.808);
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+}
+
+footer {
+  display: flex;
+}
+
+.high {
+  display: none;
+}
+
+.startpage {
+  position: absolute;
+  height: 90vh;
+  width: 90vw;
+  background-color: rgb(18, 73, 175);
+  z-index: 1;
+  display: none;
+}

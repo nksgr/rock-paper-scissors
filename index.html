@@ -1,111 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
-    <h1 style="text-align: center; margin: 2rem;"> Rock, Paper, Scissors</h1>
+  </head>
+  <body>
+    <h1 style="text-align: center; margin: 2rem">Rock, Paper, Scissors</h1>
 
     <div class="startpage">
+      <!-- <div class="rules">
+        <h2>Rules</h2>
 
-        <div class="btn-start">
-            <p>Click here to Start</p>
-            <button class="start">Start</button>
-        </div>
+        1. Rock wins against scissors
+        <br />
+        2. Paper wins against rock
+        <br />
+        3. Scissors wins against paper
+      </div>
 
-        <div class="rules">
-            Rules
-            <br>
-            1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            <br>
-            2. Lorem ipsum dolor sit, amet consectetur adipisicing.
-            <br>
-            3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-
-        </div>
-
+      <div class="btn-start">
+        <p>Ready?</p>
+        <button class="start">Start</button>
+      </div> -->
     </div>
-<header>
-<h1 style="margin-left: 1rem;"> Score </h1>
-<div class="scoreboard">
-
-
-    <div class="pscore-box">
-        <h3> Player</h3>
-        <div class="pscore"> 0</div>
-        
-    </div>
-
-
-    <div class="round-box">
-        <h3> Round</h3>
-        <div class="round"> 0</div>
-        
-    </div>
-
-    <div class="cscore-box">
-        <h3> Computer</h3>
-        <div class="cscore"> 0</div>
-        
-    </div>
-
-
-
-</div>
-</header>
-
-<main>
-
-    <section class="play">
-        <div class="pimage">
-            
-        </div>
-    
-        <p class="msg "> Select below to Start! </p>
-    
-        <div class="cimage">
-            
-        </div>
-    </section>
-
-    <section class="selection">
-
-        <div class="rock">
-            ✊ 
+    <header>
+      <h2 class="score-heading">Score</h2>
+      <div class="scoreboard">
+        <div class="pscore-box">
+          <h3>Player</h3>
+          <div class="pscore">0</div>
         </div>
 
-        <div class="paper">
-            ✋ 
-        </div>
-        <div class="scissor">
-            ✌️ 
-            
+        <div class="round-box">
+          <h3>Round</h3>
+          <div class="round">0</div>
         </div>
 
-    </section>
+        <div class="cscore-box">
+          <h3>Computer</h3>
+          <div class="cscore">0</div>
+        </div>
+      </div>
+    </header>
 
-</main>
+    <main>
+      <section class="play">
+        <div class="pimage">💪</div>
 
-<footer>
-    <h3> Gameplay</h3>
-    <div class="game">
-        <p> Player: <span class="pgame"> 0 </span></p>
-        <p> Computer: <span class="cgame"> 0 </span></p>
+        <p class="msg">Select your weapon below to Start!</p>
 
-    </div>
-    <div class="highscore">
-        <p class="high"> High score: <span class="highscore">  0 </span> </p>
-        <button class="reset"> Reset</button>
-    </div>
-    
-</footer>
+        <div class="cimage">🤖</div>
+      </section>
 
+      <section class="selection">
+        <div class="rock">✊</div>
+        <div class="paper">✋</div>
+        <div class="scissor">✌️</div>
+      </section>
+    </main>
 
-    
-    <script src="script.js"> </script>
-</body>
+    <footer>
+      <h3>Gameplay</h3>
+      <div class="game">
+        <p>Player: <span class="pgame"> 0 </span></p>
+        <p>Computer: <span class="cgame"> 0 </span></p>
+      </div>
+      <div class="highscore">
+        <p class="high">High score: <span class="highscore"> 0 </span></p>
+        <button class="reset">Reset</button>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>

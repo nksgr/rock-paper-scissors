@@ -1,4 +1,4 @@
-// list of functions: for part1 
+// list of functions: for part1
 
 /*
 
@@ -20,262 +20,210 @@ supporting functions for game():
 
 */
 
-
-
-// part 2 - rock paper scissor - 
-
+// part 2 - rock paper scissor -
 
 // DOM Access
 
-let pscore = document.querySelector('.pscore')
-let round = document.querySelector('.round')
-let cscore = document.querySelector('.cscore')
-let msg = document.querySelector('.msg')
-let cimage = document.querySelector('.cimage')
-let pimage = document.querySelector('.pimage')
-let cgame = document.querySelector('.cgame')
-let pgame = document.querySelector('.pgame')
-
-
-
-
+let pscore = document.querySelector(".pscore")
+let round = document.querySelector(".round")
+let cscore = document.querySelector(".cscore")
+let msg = document.querySelector(".msg")
+let cimage = document.querySelector(".cimage")
+let pimage = document.querySelector(".pimage")
+let cgame = document.querySelector(".cgame")
+let pgame = document.querySelector(".pgame")
 
 //buttons:
 
-let rock = document.querySelector('.rock')
-let paper = document.querySelector('.paper')
-let scissors = document.querySelector('.scissor')
-let resetbtn = document.querySelector('.reset')
-let start = document.querySelector('.start')
-
+let rock = document.querySelector(".rock")
+let paper = document.querySelector(".paper")
+let scissors = document.querySelector(".scissor")
+let resetbtn = document.querySelector(".reset")
+let start = document.querySelector(".start")
 
 //global variables
 
-movesEmojis= {
-    'rock': '✊',
-    'paper': '✋',
-    'scissors': '✌️'
+movesEmojis = {
+  rock: "✊",
+  paper: "✋",
+  scissors: "✌️",
 }
-moves = ['rock', 'paper', 'scissors']
+moves = ["rock", "paper", "scissors"]
 
-pScore = 0;
-cScore = 0;
-roundno = 0;
-pGame = 0;
-cGame = 0;
-
-
+pScore = 0
+cScore = 0
+roundno = 0
+pGame = 0
+cGame = 0
 
 // button's events
 
-rock.addEventListener('click', ()=>{
-
-    playRound('rock')
+rock.addEventListener("click", () => {
+  playRound("rock")
 })
 
-paper.addEventListener('click', ()=>{
-    playRound('paper')
+paper.addEventListener("click", () => {
+  playRound("paper")
 })
 
-scissors.addEventListener('click', ()=>{
-    playRound('scissors')
+scissors.addEventListener("click", () => {
+  playRound("scissors")
 })
 
-resetbtn.addEventListener('click', ()=>{
-    reset()
+resetbtn.addEventListener("click", () => {
+  reset()
 })
 
+const playRound = (pSelect) => {
+  round.textContent = roundno
 
+  let cSelect = cSelection() // ### automated stuff (returns - rock, paper, scissor)) ###
 
-const playRound = (pSelect)=>{
+  console.log(pSelect, cSelect)
+  // #### update DOM here - pimage (with what pSelect text) cimage with what cs chose ####
+  pimage.textContent = movesEmojis[pSelect]
+  cimage.textContent = movesEmojis[cSelect]
 
-    round.textContent = roundno
+  // ### call roundWinner here
 
-       
-    let cSelect = cSelection()  // ### automated stuff (returns - rock, paper, scissor)) ###
+  msg.textContent = roundWinner(pSelect, cSelect)
 
-    console.log(pSelect, cSelect)
-    // #### update DOM here - pimage (with what pSelect text) cimage with what cs chose ####
-    pimage.textContent = movesEmojis[pSelect]
-    cimage.textContent = movesEmojis[cSelect]
-    
-    // ### call roundWinner here
+  // ### update scoreboard
 
-    msg.textContent = roundWinner( pSelect, cSelect) 
+  pscore.textContent = pScore
+  cscore.textContent = cScore
 
-    // ### update scoreboard 
+  //console.log(`Player: ${pScore} Computer: ${cScore} `)
+  roundno++
 
-    pscore.textContent = pScore
-    cscore.textContent = cScore
-  
-
-    //console.log(`Player: ${pScore} Computer: ${cScore} `)
-    roundno ++;
-
-    
-    if (pScore ==5 || cScore == 5){
-        msg.textContent = gameWinner(pScore, cScore)
-        pscore.textContent = 0
-        round.textContent = 0
-        cscore.textContent =0
-        cimage.textContent = ''
-        pimage.textContent = ''
-
-   
-   
-        
-        if(pScore>=5){
-            pGame++
-        } else if (cScore >=5){
-            cGame++
-        }
-
-        pScore = 0
-        cScore = 0
-        round = 0
-
-        pgame.textContent = pGame
-        cgame.textContent = cGame
-
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// the main game function
-const reset = ()=>{
-
+  if (pScore == 5 || cScore == 5) {
+    msg.textContent = gameWinner(pScore, cScore)
     pscore.textContent = 0
     round.textContent = 0
-    cscore.textContent =0
-    msg.textContent = "Select your choice below"
-    cimage.textContent = ''
-    pimage.textContent = ''
-    cgame.textContent = 0
-    pgame.textContent = 0
+    cscore.textContent = 0
+    cimage.textContent = ""
+    pimage.textContent = ""
 
-    
-    
+    if (pScore >= 5) {
+      pGame++
+    } else if (cScore >= 5) {
+      cGame++
+    }
 
+    pScore = 0
+    cScore = 0
+    round = 0
 
+    pgame.textContent = pGame
+    cgame.textContent = cGame
+  }
 }
 
+// the main game function
+const reset = () => {
+  pscore.textContent = 0
+  round.textContent = 0
+  cscore.textContent = 0
+  msg.textContent = "Select your choice below"
+  cimage.textContent = ""
+  pimage.textContent = ""
+  cgame.textContent = 0
+  pgame.textContent = 0
+}
 
 //supporting functions
 
-
-//pSelection - sanitizes user input... makes sure correct input is given by the user. 
+//pSelection - sanitizes user input... makes sure correct input is given by the user.
 // it prompts until user enters correct input
-const pSelection = ()=>{
+const pSelection = () => {
+  // #### make it as an event listenr for rock, paper, scissor
 
-    // #### make it as an event listenr for rock, paper, scissor
+  let pSelect
+  let msg = "Your turn: Click on your choice" //#### update msg box in DOM
 
-    let pSelect;
-    let msg = "Your turn: Click on your choice" //#### update msg box in DOM
-   
-    // #### return the clicked event
+  // #### return the clicked event
 
-    return pSelect
+  return pSelect
 }
 
 // cSelection - computer makes a choice - based on random concept
-const cSelection = ()=>{
+const cSelection = () => {
+  let index = Math.floor(Math.random() * 3)
 
-    let index = Math.floor(Math.random()*3)
-
-    return moves[index]
-
-
+  return moves[index]
 }
 
 // here round winner is decided and is declared in the console
 
-    
-const roundWinner = (pSelect, cSelect)=> {
-    let roundScore = roundPlay(pSelect, cSelect) // calling roundplay function
+const roundWinner = (pSelect, cSelect) => {
+  let roundScore = roundPlay(pSelect, cSelect) // calling roundplay function
 
-    switch(roundScore){
-        case -1: 
-            cScore++;
-            return (` You lost this round, booooo! ${cSelect} beats ${pSelect}!`)
-            break 
+  switch (roundScore) {
+    case -1:
+      cScore++
+      return ` You lost this round, booooo! ${cSelect} beats ${pSelect}!`
+      break
 
-        case 1: 
+    case 1:
+      pScore++
+      return ` You won this round, yaaay! ${pSelect} beats ${cSelect}!`
+      break
 
-            pScore++;
-            return (` You won this round, yaaay! ${pSelect} beats ${cSelect}!`)
-            break 
-
-        case 0: 
-
-            return (`You both drawed out.... Processor unhappy!`)
-    }
+    case 0:
+      return `You both drawed out....  Processor unhappy!`
+  }
 }
 
 // here score is decided. Return values: -1 --> if player loses ; 1 --> if player wins ; 0 --> if both draw out
 
-const roundPlay = (pSelect, cSelect)=>{
-    
-    switch(pSelect){
-        case 'rock' : 
+const roundPlay = (pSelect, cSelect) => {
+  switch (pSelect) {
+    case "rock":
+      switch (cSelect) {
+        case "rock":
+          return 0
 
-            switch (cSelect){
-                case 'rock' : return 0;
-            
-                case 'paper': return -1;
+        case "paper":
+          return -1
 
-                case 'scissors': return 1;
-            }
-            
+        case "scissors":
+          return 1
+      }
 
-        case 'paper':
+    case "paper":
+      switch (cSelect) {
+        case "rock":
+          return 1
 
+        case "paper":
+          return 0
 
-            switch (cSelect){
-                case 'rock' : return 1;
-            
-                case 'paper': return 0;
+        case "scissors":
+          return -1
+      }
 
-                case 'scissors': return -1;
-            }
-            
+    case "scissors":
+      switch (cSelect) {
+        case "rock":
+          return -1
 
-        case 'scissors':
+        case "paper":
+          return 1
 
-            switch (cSelect){
-                case 'rock' : return -1;
-            
-                case 'paper': return 1;
-
-                case 'scissors': return 0;
-            }
-            
-    }
-
-    
+        case "scissors":
+          return 0
+      }
+  }
 }
-    
-// here, who won the game is decided. this function returns custom msgs 
 
-const gameWinner = (pScore, cScore) =>{
-    if (pScore > cScore){
-        return "Yaaay! You won the game! You showed the computer who's the boss, for good!"
-    }
-    else if(cScore> pScore){
-        return "Yikes! Better luck next time. Computer beat you real bad, yo!"
-    }
+// here, who won the game is decided. this function returns custom msgs
 
-    else{
-        return "You both drawed out! No fun for me, processor was really betting on you, player!"
-    }
+const gameWinner = (pScore, cScore) => {
+  if (pScore > cScore) {
+    return "Yaaay! You won the game! You showed the computer who's the boss, for good!"
+  } else if (cScore > pScore) {
+    return "Yikes! Better luck next time. Computer beat you real bad, yo!"
+  } else {
+    return "You both drawed out! No fun for me, processor was really betting on you, player!"
+  }
 }
