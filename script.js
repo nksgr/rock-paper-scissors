@@ -22,6 +22,14 @@ supporting functions for game():
 
 // part 2 - rock paper scissor -
 
+// colors
+
+let green = "#2da714"
+let red = "#ee1121"
+let orange = "#f18b0e"
+let grey = "#7c8382"
+let blue = "#2539ecd5"
+
 // DOM Access
 
 let pscore = document.querySelector(".pscore")
@@ -32,6 +40,7 @@ let cimage = document.querySelector(".cimage")
 let pimage = document.querySelector(".pimage")
 let cgame = document.querySelector(".cgame")
 let pgame = document.querySelector(".pgame")
+let instruction = document.querySelector(".instruction")
 
 //buttons:
 
@@ -75,7 +84,7 @@ resetbtn.addEventListener("click", () => {
 })
 
 const playRound = (pSelect) => {
-  round.textContent = roundno
+  round.textContent = ++roundno
 
   let cSelect = cSelection() // ### automated stuff (returns - rock, paper, scissor)) ###
 
@@ -86,7 +95,7 @@ const playRound = (pSelect) => {
 
   // ### call roundWinner here
 
-  msg.textContent = roundWinner(pSelect, cSelect)
+  msg.textContent = updateWinner(pSelect, cSelect)
 
   // ### update scoreboard
 
@@ -94,15 +103,14 @@ const playRound = (pSelect) => {
   cscore.textContent = cScore
 
   //console.log(`Player: ${pScore} Computer: ${cScore} `)
-  roundno++
+
+  instruction.style.display = "block"
 
   if (pScore == 5 || cScore == 5) {
     msg.textContent = gameWinner(pScore, cScore)
     pscore.textContent = 0
     round.textContent = 0
     cscore.textContent = 0
-    cimage.textContent = ""
-    pimage.textContent = ""
 
     if (pScore >= 5) {
       pGame++
@@ -125,26 +133,20 @@ const reset = () => {
   round.textContent = 0
   cscore.textContent = 0
   msg.textContent = "Select your choice below"
-  cimage.textContent = ""
-  pimage.textContent = ""
+  msg.textContent += " "
+
+  cimage.textContent = "🤖"
+  cimage.style.backgroundColor = blue
+
+  instruction.style.display = "none"
+
+  pimage.textContent = "💪"
+  pimage.style.backgroundColor = blue
   cgame.textContent = 0
   pgame.textContent = 0
 }
 
 //supporting functions
-
-//pSelection - sanitizes user input... makes sure correct input is given by the user.
-// it prompts until user enters correct input
-const pSelection = () => {
-  // #### make it as an event listenr for rock, paper, scissor
-
-  let pSelect
-  let msg = "Your turn: Click on your choice" //#### update msg box in DOM
-
-  // #### return the clicked event
-
-  return pSelect
-}
 
 // cSelection - computer makes a choice - based on random concept
 const cSelection = () => {
@@ -155,22 +157,43 @@ const cSelection = () => {
 
 // here round winner is decided and is declared in the console
 
-const roundWinner = (pSelect, cSelect) => {
-  let roundScore = roundPlay(pSelect, cSelect) // calling roundplay function
-
+const updateWinner = (pSelect, cSelect) => {
+  let roundScore = roundPlay(pSelect, cSelect)
+  colorUpdate(roundScore)
   switch (roundScore) {
     case -1:
       cScore++
-      return ` You lost this round, booooo! ${cSelect} beats ${pSelect}!`
+      return ` You lost this round, booooo!`
       break
 
     case 1:
       pScore++
-      return ` You won this round, yaaay! ${pSelect} beats ${cSelect}!`
+      return ` You won this round, yaaay!`
       break
 
     case 0:
-      return `You both drawed out....  Processor unhappy!`
+      return `You both drawed out.... 
+       Processor unhappy!`
+      break
+  }
+}
+
+const colorUpdate = (roundScore) => {
+  switch (roundScore) {
+    case -1:
+      cimage.style.backgroundColor = green
+      pimage.style.backgroundColor = red
+      break
+
+    case 1:
+      cimage.style.backgroundColor = red
+      pimage.style.backgroundColor = green
+      break
+
+    case 0:
+      cimage.style.backgroundColor = orange
+      pimage.style.backgroundColor = orange
+      break
   }
 }
 
@@ -219,11 +242,24 @@ const roundPlay = (pSelect, cSelect) => {
 // here, who won the game is decided. this function returns custom msgs
 
 const gameWinner = (pScore, cScore) => {
+  instruction.style.display = "none"
+
   if (pScore > cScore) {
-    return "Yaaay! You won the game! You showed the computer who's the boss, for good!"
+    updateIcons("😎", green, grey)
+    return `You showed the computer who's the boss, you won!`
   } else if (cScore > pScore) {
-    return "Yikes! Better luck next time. Computer beat you real bad, yo!"
+    updateIcons("🙄", grey, green)
+    return `Yikes! Better luck next time.`
   } else {
-    return "You both drawed out! No fun for me, processor was really betting on you, player!"
+    updateIcons("😵", green, grey)
+    return `You both drawed out! 
+    No fun for me!`
   }
+}
+
+const updateIcons = (player, colorP, colorC) => {
+  pimage.textContent = player
+  cimage.textContent = "🤖"
+  pimage.style.backgroundColor = colorP
+  cimage.style.backgroundColor = colorC
 }

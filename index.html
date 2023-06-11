@@ -10,25 +10,12 @@
   </head>
   <body>
     <h1 style="text-align: center; margin: 2rem">Rock, Paper, Scissors</h1>
-
-    <div class="startpage">
-      <!-- <div class="rules">
-        <h2>Rules</h2>
-
-        1. Rock wins against scissors
-        <br />
-        2. Paper wins against rock
-        <br />
-        3. Scissors wins against paper
+    <header>
+      <div class="score">
+        <h2 class="score-heading">Score</h2>
+        <button class="reset">Reset</button>
       </div>
 
-      <div class="btn-start">
-        <p>Ready?</p>
-        <button class="start">Start</button>
-      </div> -->
-    </div>
-    <header>
-      <h2 class="score-heading">Score</h2>
       <div class="scoreboard">
         <div class="pscore-box">
           <h3>Player</h3>
@@ -44,6 +31,10 @@
           <h3>Computer</h3>
           <div class="cscore">0</div>
         </div>
+        <div class="game">
+          <p>Player: <span class="pgame"> 0 </span></p>
+          <p>Computer: <span class="cgame"> 0 </span></p>
+        </div>
       </div>
     </header>
 
@@ -55,25 +46,15 @@
 
         <div class="cimage">🤖</div>
       </section>
-
+      <section>
+        <p class="instruction">Select your choice to play the next round</p>
+      </section>
       <section class="selection">
         <div class="rock">✊</div>
         <div class="paper">✋</div>
         <div class="scissor">✌️</div>
       </section>
     </main>
-
-    <footer>
-      <h3>Gameplay</h3>
-      <div class="game">
-        <p>Player: <span class="pgame"> 0 </span></p>
-        <p>Computer: <span class="cgame"> 0 </span></p>
-      </div>
-      <div class="highscore">
-        <p class="high">High score: <span class="highscore"> 0 </span></p>
-        <button class="reset">Reset</button>
-      </div>
-    </footer>
 
     <script src="script.js"></script>
   </body>

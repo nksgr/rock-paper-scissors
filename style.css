@@ -13,17 +13,23 @@ body {
   max-height: 100vh;
   width: 90%;
   margin: 0 auto;
-  background-color: rgba(26, 87, 64, 0.979);
+  background-color: rgba(5, 22, 15, 0.979);
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
   color: #fff;
+  letter-spacing: 0.1rem;
 }
 
 header,
-main,
-footer {
+main {
   border: 1px solid rgba(206, 201, 201, 0.644);
   margin: 2rem auto;
+  max-width: 800px;
+}
+
+main {
+  background-color: rgba(26, 87, 64, 0.979);
+  border-radius: 7px;
 }
 
 .startpage {
@@ -65,14 +71,25 @@ header {
   padding: 1rem;
 }
 
-header h2 {
-  text-align: center;
-  width: 25%;
-}
 .scoreboard {
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 82%;
+}
+
+.score {
+  text-align: center;
+  width: 20%;
+}
+
+.score-heading {
+  color: #052414;
+}
+
+.game {
+  width: 25%;
+  text-align: center;
+  margin-left: 3px;
 }
 
 .scoreboard > * {
@@ -89,19 +106,23 @@ header h2 {
 .msg {
   text-align: center;
   padding: 1rem;
+  width: 20rem;
+  height: 10rem;
 }
-
-.play,
-.selection,
-footer {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
+.instruction {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  display: none;
 }
 
 .play,
 .selection {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
   padding: 1.5rem 2rem;
   margin: 2rem 0;
 }
@@ -126,17 +147,14 @@ footer {
   height: 15rem;
   border: 0.1rem solid white;
   border-radius: 5%;
-  background-color: rgba(37, 57, 236, 0.836);
+  background-color: #2539ecd5;
   font-size: 8rem;
-}
-
-.msg {
-  width: 21rem;
-  height: 10rem;
 }
 
 .selection {
   border: 0.1rem solid white;
+  margin-bottom: 0;
+  background-color: #19a75dc4;
 }
 
 .rock,
@@ -158,36 +176,12 @@ button:hover {
   background-color: rgba(56, 53, 53, 0.568);
 }
 
-footer {
-  justify-content: space-around;
-  padding: 1rem;
-}
-.game,
-.highscore {
-  width: 50%;
-  text-align: center;
-}
-
-button {
-  background-color: rgba(48, 41, 150, 0.808);
-  padding: 1rem 2.5rem;
+.reset {
+  background-color: #320c7f;
+  color: inherit;
+  font-family: inherit;
+  padding: 0.8rem 2rem;
   border-radius: 1rem;
-  font-size: 2rem;
-}
-
-footer {
-  display: flex;
-}
-
-.high {
-  display: none;
-}
-
-.startpage {
-  position: absolute;
-  height: 90vh;
-  width: 90vw;
-  background-color: rgb(18, 73, 175);
-  z-index: 1;
-  display: none;
+  font-size: 1.6rem;
+  border: none;
 }
